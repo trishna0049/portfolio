@@ -1,26 +1,243 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+
+  --color-magic-gold: #b8a8e0;
+  --color-magic-gold-dark: #a088d0;
+  --color-magic-gold-light: #d0c8f0;
+  --color-royal-purple: #88c8f0;
+  --color-royal-purple-dark: #60b0e0;
+  --color-royal-purple-light: #b0ddf5;
+  --color-magic-pink: #f0a8b8;
+  --color-magic-pink-dark: #e088a0;
+  --color-magic-pink-light: #f8c8d0;
+  --color-enchanted-blue: #a0d8c0;
+  --color-enchanted-blue-dark: #80c0a0;
+  --color-enchanted-blue-light: #c0e8d8;
+  --color-midnight-blue: #2a2838;
+  --color-midnight-blue-dark: #1a1828;
+  --color-magic-teal: #f0c8a8;
+  --color-magic-teal-dark: #e0b090;
+  --color-star-gold: #f0e8a0;
+  --color-soft-lavender: #f4ecf8;
+  --color-warm-cream: #fdf8f0;
+  --color-enchanted-rose: #f0a0b8;
+  --color-fairy-green: #b8d8c0;
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #faf8fd;
+  --foreground: #2a2838;
+  --card: #ffffff;
+  --card-foreground: #2a2838;
+  --popover: #ffffff;
+  --popover-foreground: #2a2838;
+  --primary: #b8a8e0;
+  --primary-foreground: #ffffff;
+  --secondary: #f4ecf8;
+  --secondary-foreground: #2a2838;
+  --muted: #f5f0fa;
+  --muted-foreground: #8a84a0;
+  --accent: #f0f8fc;
+  --accent-foreground: #2a2838;
+  --destructive: #f0a0b8;
+  --border: #e8e4f0;
+  --input: #e8e4f0;
+  --ring: #b8a8e0;
+}
+
+.dark {
+  --background: #1a1828;
+  --foreground: #ece8f5;
+  --card: #252240;
+  --card-foreground: #ece8f5;
+  --popover: #252240;
+  --popover-foreground: #ece8f5;
+  --primary: #c4b5e0;
+  --primary-foreground: #1a1828;
+  --secondary: #2a2840;
+  --secondary-foreground: #ece8f5;
+  --muted: #302e48;
+  --muted-foreground: #9a94b0;
+  --accent: #2a2e48;
+  --accent-foreground: #ece8f5;
+  --destructive: #e088a0;
+  --border: #3a3850;
+  --input: #3a3850;
+  --ring: #c4b5e0;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), sans-serif;
+    @apply font-bold tracking-tight;
+  }
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .pastel-gradient {
+    background: linear-gradient(135deg, #f4ecf8 0%, #f0f8fc 50%, #fdf8f0 100%);
+  }
+
+  .dark .pastel-gradient {
+    background: linear-gradient(135deg, #252240 0%, #1a1828 50%, #2a2840 100%);
+  }
+
+  .star-divider {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .star-divider::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .card-shadow {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  @keyframes blob-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(10px, -15px) scale(1.05); }
+    50% { transform: translate(-5px, -20px) scale(0.95); }
+    75% { transform: translate(-10px, -5px) scale(1.02); }
+  }
+
+  @keyframes blob-spin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .enchantment-border {
+    position: relative;
+  }
+
+  .enchantment-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--primary), var(--royal-purple), var(--magic-pink), var(--primary));
+    background-size: 300% 300%;
+    animation: shimmer 4s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  .fairy-dust {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fairy-dust::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(184, 168, 224, 0.04) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(136, 200, 240, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(240, 168, 184, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
 }

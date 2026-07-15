@@ -1,0 +1,18 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c" x1="120" y1="64" x2="1060" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD7F0"/>
+      <stop offset="0.5" stop-color="#FFCFEA"/>
+      <stop offset="1" stop-color="#FFCFEE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" rx="28" fill="url(#c)"/>
+  <rect x="130" y="108" width="940" height="484" rx="24" fill="white" fill-opacity="0.86"/>
+  <rect x="170" y="154" width="310" height="14" rx="7" fill="#F4D9EE"/>
+  <rect x="170" y="180" width="390" height="11" rx="5.5" fill="#F9E8F4"/>
+  <rect x="170" y="236" width="860" height="98" rx="18" fill="#FFF1FA"/>
+  <rect x="170" y="352" width="275" height="194" rx="18" fill="#F2EFFF"/>
+  <rect x="463" y="352" width="275" height="194" rx="18" fill="#FFEFFC"/>
+  <rect x="756" y="352" width="274" height="194" rx="18" fill="#FFF1FA"/>
+  <path d="M206 297C265 286 312 245 363 247C416 249 465 298 519 294C568 291 612 244 666 242C718 239 764 281 811 288C869 297 920 271 980 250" stroke="#DCA6D9" stroke-width="10" stroke-linecap="round"/>
+</svg>
