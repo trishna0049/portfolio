@@ -50,7 +50,7 @@ export function CommandPalette() {
     { id: "education", label: "Education", description: "Academic foundation", icon: <GraduationCap className="h-4 w-4" />, action: () => { document.getElementById("education")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); } },
     { id: "achievements", label: "Achievements", description: "Milestones and honors", icon: <Trophy className="h-4 w-4" />, action: () => { document.getElementById("achievements")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); } },
     { id: "contact", label: "Contact", description: "Get in touch", icon: <Mail className="h-4 w-4" />, action: () => { document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); setOpen(false); } },
-    { id: "resume", label: "Resume", description: "Full professional profile", icon: <FileText className="h-4 w-4" />, action: () => router.push("/resume") },
+    { id: "resume", label: "Resume", description: "Full professional profile", icon: <FileText className="h-4 w-4" />, action: () => window.open(portfolioData.person.resumeUrl, "_blank") },
     { id: "github", label: "GitHub", description: "View the code repository", icon: <GitFork className="h-4 w-4" />, action: () => window.open(portfolioData.hero.social.find(s => s.icon === "github")?.href, "_blank") },
     { id: "linkedin", label: "LinkedIn", description: "Professional network", icon: <BriefcaseBusiness className="h-4 w-4" />, action: () => window.open(portfolioData.hero.social.find(s => s.icon === "linkedin")?.href, "_blank") },
     { id: "email", label: "Email", description: "Send a direct message", icon: <Mail className="h-4 w-4" />, action: () => window.open(portfolioData.hero.social.find(s => s.icon === "mail")?.href, "_blank") },

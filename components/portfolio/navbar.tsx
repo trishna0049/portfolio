@@ -37,50 +37,35 @@ export function Navbar({ onCommandOpen }: { onCommandOpen?: () => void }) {
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 md:px-6">
-        <a href="#home" className="inline-flex items-center group">
-          <span className="text-sm font-semibold tracking-tight ml-6 md:ml-8">{portfolioData.person.name}</span>
-        </a>
-
-        <nav className="hidden lg:flex items-center gap-1">
-          {portfolioData.nav.map((item) => {
-            const isPage = item.id === "resume";
-            if (isPage) {
+      <div className="mx-auto flex w-full max-w-6xl items-center px-4 py-3 md:px-6">
+        <nav className="hidden lg:flex items-center justify-center w-full gap-4">
+            {portfolioData.nav.map((item) => {
+              const isPage = item.id === "resume";
               return (
-                <div key={item.id} className="flex items-center">
-                  <a
-                    href="/resume"
-                    className={cn(
-                      "px-3 py-1.5 text-xs font-medium transition-all rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                  <span className="ml-3"><ThemeToggle /></span>
-                </div>
+                <a
+                  key={item.id}
+                  href={isPage ? portfolioData.person.resumeUrl : `#${item.id}`}
+                  className={cn(
+                    "px-3 py-1.5 text-xs font-medium transition-all rounded-xl border",
+                    isPage
+                      ? "text-muted-foreground hover:text-foreground hover:bg-muted/50 border-transparent"
+                      : activeSection === item.id
+                        ? "bg-primary/10 text-foreground border-primary/20"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50 border-transparent"
+                  )}
+                >
+                  {item.label}
+                </a>
               );
-            }
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={cn(
-                  "px-3 py-1.5 text-xs font-medium transition-all rounded-xl",
-                  activeSection === item.id
-                    ? "bg-primary/10 text-foreground border border-primary/20"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                )}
-              >
-                {item.label}
-              </a>
-            );
-          })}
+            })}
+          <ThemeToggle />
         </nav>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex lg:hidden items-center justify-end w-full gap-1.5">
+          <ThemeToggle />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden inline-flex h-9 w-9 items-center justify-center border border-border/60 bg-card text-foreground rounded-xl"
+            className="inline-flex h-9 w-9 items-center justify-center border border-border/60 bg-card text-foreground rounded-xl"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -103,7 +88,7 @@ export function Navbar({ onCommandOpen }: { onCommandOpen?: () => void }) {
                   <button
                     key={item.id}
                     onClick={() => {
-                      if (isPage) window.location.href = "/resume";
+                      if (isPage) window.location.href = portfolioData.person.resumeUrl;
                       else document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
                       setMobileOpen(false);
                     }}

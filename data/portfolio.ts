@@ -21,7 +21,7 @@ export const portfolioData: PortfolioData = {
       "Hi, I'm Trishna Tanaya, a B.Tech Information Technology student at VIT Vellore and a full-stack software developer passionate about building scalable, AI-powered applications. I enjoy working across modern web technologies, backend systems, and machine learning to create products that solve real-world problems. From real-time collaboration platforms to enterprise AI solutions and e-commerce products, I love turning ideas into polished user experiences. I'm always eager to learn, build, and contribute to impactful engineering teams.",
     ],
     currentFocus: "Building real-time collaborative tools and distributed systems.",
-    resumeUrl: "/resume",
+    resumeUrl: "/Trishna Resume 2.pdf",
     avatar: "/illustrations/hero-orb.svg",
     stats: [
       { label: "CGPA", value: "8.27" },
@@ -49,7 +49,7 @@ export const portfolioData: PortfolioData = {
     ],
     actions: [
       { label: "View Projects", href: "#projects", variant: "primary" },
-      { label: "Download Resume", href: "/resume", variant: "secondary" },
+      { label: "View Resume", href: "/Trishna Resume 2.pdf", variant: "secondary" },
       { label: "Get in Touch", href: "#contact", variant: "outline" },
     ],
     social: socials,
