@@ -3,7 +3,7 @@ import { ArrowLeft, Download, FileText, Mail, MapPin, Award, Star } from "lucide
 import { portfolioData } from "@/data/portfolio";
 
 export default function ResumePage() {
-  const { person, experience, education, skills, certifications } = portfolioData;
+  const { person, experience, education, skills, achievements, certifications } = portfolioData;
 
   return (
     <main className="relative min-h-screen bg-background px-4 py-12 md:px-6">
@@ -99,10 +99,20 @@ export default function ResumePage() {
 
           <div className="star-divider" />
 
+          <div className="space-y-3">
+            <h2 className="text-sm font-bold flex items-center gap-2"><Star className="h-3 w-3 text-primary fill-primary" /> Achievements</h2>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {achievements.map((ach) => (
+                <div key={ach.title} className="border border-border/60 bg-muted/30 p-3 rounded-xl hover:border-primary/30 transition-colors">
+                  <p className="text-xs font-bold">{ach.title}</p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">{ach.detail}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{ach.category} | {ach.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link href={`mailto:${person.email}`} className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:brightness-105 transition-all rounded-xl shadow-md">
-              <Download className="h-4 w-4" /> Request PDF Copy
-            </Link>
             <Link href="/#contact" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border/60 bg-card text-foreground hover:bg-muted/50 transition-colors rounded-xl">
               <Mail className="h-4 w-4" /> Connect
             </Link>

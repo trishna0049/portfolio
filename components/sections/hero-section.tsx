@@ -119,13 +119,6 @@ export function HeroSection() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-border/60 pt-2">
-                  <span className="text-[10px] text-muted-foreground">Status</span>
-                  <span className="flex items-center gap-1.5 text-[10px] font-medium text-fairy-green">
-                    <span className="w-1.5 h-1.5 rounded-full bg-fairy-green animate-pulse" />
-                    {portfolioData.person.availability}
-                  </span>
-                </div>
               </div>
             </div>
           </motion.div>

@@ -38,21 +38,35 @@ export function Navbar({ onCommandOpen }: { onCommandOpen?: () => void }) {
       )}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 md:px-6">
-        <a href="#home" className="inline-flex items-center gap-2 group">
-          <Sparkles className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
-          <span className="text-sm font-semibold tracking-tight">{portfolioData.person.name}</span>
+        <a href="#home" className="inline-flex items-center group">
+          <span className="text-sm font-semibold tracking-tight ml-6 md:ml-8">{portfolioData.person.name}</span>
         </a>
 
         <nav className="hidden lg:flex items-center gap-1">
           {portfolioData.nav.map((item) => {
             const isPage = item.id === "resume";
+            if (isPage) {
+              return (
+                <div key={item.id} className="flex items-center">
+                  <a
+                    href="/resume"
+                    className={cn(
+                      "px-3 py-1.5 text-xs font-medium transition-all rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                  <span className="ml-3"><ThemeToggle /></span>
+                </div>
+              );
+            }
             return (
               <a
                 key={item.id}
-                href={isPage ? "/resume" : `#${item.id}`}
+                href={`#${item.id}`}
                 className={cn(
                   "px-3 py-1.5 text-xs font-medium transition-all rounded-xl",
-                  !isPage && activeSection === item.id
+                  activeSection === item.id
                     ? "bg-primary/10 text-foreground border border-primary/20"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 )}
@@ -64,16 +78,6 @@ export function Navbar({ onCommandOpen }: { onCommandOpen?: () => void }) {
         </nav>
 
         <div className="flex items-center gap-1.5">
-          <button
-            onClick={onCommandOpen}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-muted-foreground border border-border/60 rounded-xl hover:text-foreground hover:bg-muted/50 transition-colors"
-            aria-label="Open command palette"
-          >
-            <Command className="h-3 w-3" />
-            <span className="hidden md:inline">Ctrl+K</span>
-          </button>
-          <div className="w-px h-5 bg-border/50 mx-0.5" />
-          <ThemeToggle />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden inline-flex h-9 w-9 items-center justify-center border border-border/60 bg-card text-foreground rounded-xl"

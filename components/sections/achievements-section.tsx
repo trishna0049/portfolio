@@ -45,10 +45,7 @@ export function AchievementsSection() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-bold font-heading">{achievement.title}</h3>
                   <p className="text-xs text-muted-foreground mt-1">{achievement.detail}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">{achievement.category}</span>
-                    <span className="text-[10px] text-muted-foreground">{achievement.date}</span>
-                  </div>
+
                 </div>
               </div>
             </StoryCard>

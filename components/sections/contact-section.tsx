@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, GitFork, BriefcaseBusiness, Mail, FileText, Send, Sparkles } from "lucide-react";
+import { GitFork, BriefcaseBusiness, Mail, FileText, Send, Phone } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { StoryCard } from "@/components/ui/story-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -46,13 +46,19 @@ export function ContactSection() {
             })}
           </div>
           <div className="mt-6 pt-6 border-t border-border/60">
-            <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1.5">
-              <Sparkles className="h-3 w-3 text-primary" /> Or send a direct message:
+            <p className="text-xs text-muted-foreground mb-2">
+              Or send a direct message:
             </p>
-            <a href={`mailto:${person.email}`} className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition-colors font-medium">
-              <Mail className="h-4 w-4" />
-              {person.email}
-            </a>
+            <div className="flex items-center gap-6 text-sm">
+              <a href={`mailto:${person.email}`} className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium">
+                <Mail className="h-4 w-4" />
+                {person.email}
+              </a>
+              <span className="inline-flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                +91 77358 55050
+              </span>
+            </div>
           </div>
         </StoryCard>
 
@@ -66,7 +72,7 @@ export function ContactSection() {
           <p className="text-xs text-muted-foreground leading-relaxed flex-1">{person.summary}</p>
           <MagicButton href={person.resumeUrl} variant="primary" size="sm" className="mt-4">
             <FileText className="h-3.5 w-3.5" />
-            Download Resume
+            View Resume
           </MagicButton>
         </StoryCard>
       </div>

@@ -19,12 +19,7 @@ export function AboutSection() {
           {portfolioData.about.bio.map((p) => (
             <p key={p} className="text-sm leading-relaxed text-muted-foreground md:text-base">{p}</p>
           ))}
-          <div className="pt-2">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2 flex items-center gap-1.5">
-              <Sparkles className="h-3 w-3 text-primary" /> Current Focus
-            </p>
-            <p className="text-sm text-muted-foreground">{portfolioData.about.currentFocus}</p>
-          </div>
+
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2 flex items-center gap-1.5">
               <Zap className="h-3 w-3 text-magic-pink" /> Interests
@@ -56,7 +51,7 @@ export function AboutSection() {
             <div className="space-y-1.5 text-xs text-muted-foreground">
               <div className="flex justify-between"><span className="text-foreground font-medium">Role</span><span>{portfolioData.person.role}</span></div>
               <div className="flex justify-between"><span className="text-foreground font-medium">Location</span><span>{portfolioData.person.location}</span></div>
-              <div className="flex justify-between"><span className="text-foreground font-medium">Status</span><span className="text-fairy-green font-medium">{portfolioData.person.availability}</span></div>
+
             </div>
           </div>
         </div>

@@ -13,5 +13,10 @@ export const education: EducationItem[] = [
     period: "2023",
     details: "Scored 84.5%",
   },
-  
+  {
+    institution: "SAI International School, Bhubaneswar",
+    degree: "Class X - CBSE",
+    period: "2021",
+    details: "Scored 96%",
+  },
 ];

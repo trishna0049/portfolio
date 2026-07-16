@@ -7,8 +7,6 @@ import Link from "next/link";
 import { portfolioData } from "@/data/portfolio";
 import { StoryCard } from "@/components/ui/story-card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { MagicButton } from "@/components/ui/magic-button";
-import { cn } from "@/lib/utils";
 
 const accentMap: Record<string, "gold" | "purple" | "pink" | "blue" | "teal"> = {
   "#dc2626": "gold",
@@ -18,18 +16,13 @@ const accentMap: Record<string, "gold" | "purple" | "pink" | "blue" | "teal"> = 
 
 export function ProjectsSection() {
   const [search, setSearch] = useState("");
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const allTags = Array.from(new Set(portfolioData.projects.flatMap((p) => p.tags)));
-
-  const filtered = portfolioData.projects.filter((p) => {
-    const matchSearch = !search ||
-      p.title.toLowerCase().includes(search.toLowerCase()) ||
-      p.description.toLowerCase().includes(search.toLowerCase()) ||
-      p.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-    const matchTag = !selectedTag || p.tags.includes(selectedTag);
-    return matchSearch && matchTag;
-  });
+  const filtered = portfolioData.projects.filter((p) =>
+    !search ||
+    p.title.toLowerCase().includes(search.toLowerCase()) ||
+    p.description.toLowerCase().includes(search.toLowerCase()) ||
+    p.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()))
+  );
 
   return (
     <section id="projects" className="scroll-mt-24 py-10">
@@ -49,22 +42,6 @@ export function ProjectsSection() {
             onChange={(e) => setSearch(e.target.value)}
             className="w-full border border-border/60 bg-card text-foreground pl-9 pr-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-xl"
           />
-        </div>
-        <div className="flex gap-1.5 flex-wrap">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-              className={cn(
-                "px-3 py-1 text-xs font-medium rounded-xl border transition-all",
-                selectedTag === tag
-                  ? "bg-primary text-white border-primary"
-                  : "border-border/60 bg-card text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {tag}
-            </button>
-          ))}
         </div>
       </div>
 
