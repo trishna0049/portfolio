@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, GitFork, ExternalLink, ArrowUpRight, Code2, Calendar, Sparkles } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { StoryCard } from "@/components/ui/story-card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -40,6 +41,7 @@ export function ProjectsSection() {
             placeholder="Search projects..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            suppressHydrationWarning
             className="w-full border border-border/60 bg-card text-foreground pl-9 pr-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-xl"
           />
         </div>
@@ -64,14 +66,22 @@ export function ProjectsSection() {
                     className="h-40 rounded-t-2xl bg-gradient-to-br relative overflow-hidden"
                     style={{ background: `linear-gradient(135deg, ${project.accent}20, ${project.accent}08)` }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Sparkles className="h-12 w-12 text-muted-foreground/15" />
-                    </div>
-                    <div className="absolute top-3 left-3">
-                      <span className="text-[10px] uppercase tracking-wider px-2 py-1 bg-background/80 backdrop-blur-sm border border-border/60 text-muted-foreground font-medium rounded-xl">
-                        {project.category}
-                      </span>
-                    </div>
+                    {project.cover ? (
+                      <Image
+                        src={project.cover}
+                        alt={`${project.title} cover`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        quality={100}
+                        priority={index < 3}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Sparkles className="h-12 w-12 text-muted-foreground/15" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-transparent" />
                     <div className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[10px] text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 border border-border/60 rounded-xl">
                       <Calendar className="h-3 w-3" />
                       {project.duration}
@@ -94,7 +104,13 @@ export function ProjectsSection() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 pt-1 border-t border-border/60">
+                    <div className="flex items-center justify-between gap-2 pt-1 border-t border-border/60">
+                      <span className="text-[10px] uppercase tracking-wider px-2 py-1 bg-muted/40 border border-border/60 text-muted-foreground font-medium rounded-xl">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-1">
                       <Link href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors py-1">
                         <GitFork className="h-3.5 w-3.5" /> Code
                       </Link>
